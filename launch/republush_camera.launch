@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="rosbag" type="play" name="rosbag" required="true" args="/home/haru/bags/test_com.bag"/>
+
+    <node name="image_republish_center" pkg="image_transport" type="republish" args="compressed raw">
+      <remap from="in" to="/camera/rgb/image_raw" />
+      <remap from="out" to="/image_center" />
+    </node>
+
+    <node name="image_republish_left" pkg="image_transport" type="republish" args="compressed raw">
+      <remap from="in" to="/camera_left/rgb/image_raw" />
+      <remap from="out" to="/image_left" />
+    </node>
+
+    <node name="image_republish_right" pkg="image_transport" type="republish" args="compressed raw">
+      <remap from="in" to="/camera_right/rgb/image_raw" />
+      <remap from="out" to="/image_right" />
+    </node>
+</launch>
