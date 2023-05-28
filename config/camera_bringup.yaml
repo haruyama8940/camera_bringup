@@ -1,0 +1,7 @@
+v4l2_camera_node:
+    video_device: /dev/video0 # string
+    output_encoding: rgb8 # string
+    camera_frame_id: camera_f # string
+    pixel_format:  YUYV # string
+    image_size: [640,480] # array
+    time_per_frame: [1,15] # array fps ex [1,30]=30fps,[1,15]=15fps
