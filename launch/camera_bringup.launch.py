@@ -9,7 +9,6 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     packages_name = "camera_tools"
-    xacro_file_name = "orne_box.urdf.xacro"
     config_file = "camera_bringup.yaml"
 
     camera_config_file = PathJoinSubstitution(
@@ -20,13 +19,14 @@ def generate_launch_description():
         package="v4l2_camera",
         executable="v4l2_camera_node",
         output="screen",
+        namespace="camera",
         parameters=[{
                     "video_device": "/dev/video0",
                     "output_encoding": "rgb8",
                     "camera_frame_id": "camera",
-                    "pixel_format":  "YUYV",
+                    "pixel_format":  "MJPEG",
                     "image_size": [640,480],
-                    "time_per_frame": [1,30]
+                    "time_per_frame": [1,15]
                     }]
     )
         # parameters=[{"robot_params": camera_config_file}]
