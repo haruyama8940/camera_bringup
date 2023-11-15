@@ -1,18 +1,23 @@
 <launch>
-    <node pkg="rosbag" type="play" name="rosbag" required="true" args="/home/haru/bags/test_com.bag"/>
+    <!-- <node pkg="rosbag" type="play" name="rosbag" required="true" args="/home/rdclab/bags/intersection_comp.bag"/> -->
 
     <node name="image_republish_center" pkg="image_transport" type="republish" args="compressed raw">
-      <remap from="in" to="/camera/rgb/image_raw" />
+      <remap from="in" to="/camera_center/image_raw" />
       <remap from="out" to="/image_center" />
     </node>
 
     <node name="image_republish_left" pkg="image_transport" type="republish" args="compressed raw">
-      <remap from="in" to="/camera_left/rgb/image_raw" />
+      <remap from="in" to="/camera_left/image_raw" />
       <remap from="out" to="/image_left" />
     </node>
 
     <node name="image_republish_right" pkg="image_transport" type="republish" args="compressed raw">
-      <remap from="in" to="/camera_right/rgb/image_raw" />
+      <remap from="in" to="/camera_right/image_raw" />
       <remap from="out" to="/image_right" />
+    </node>
+    
+    <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/image_center"/>
+        <param name="autosize" value="true" />
     </node>
 </launch>
